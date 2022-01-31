@@ -29,7 +29,6 @@ const firstPrompt = async () => {
                 'View All Departments',
                 'View All Roles',
                 'View All Employees',
-                'View Employees by Manager',
                 'Add a Department',
                 'Add an Employee',
                 'Update an Employee Role',
@@ -64,10 +63,6 @@ const firstPrompt = async () => {
 
             case 'Add a Role':
                 addRole();
-                break;
-
-            case 'View Employees by Manager':
-                employeeByManager();
                 break;
 
             case 'Exit':
@@ -235,7 +230,7 @@ const updateEmployee = async () => {
             }
         ]);
 
-        let roles = connection.query('SELECT * FROM role');
+        let roles = await connection.query('SELECT * FROM role');
 
         let rolesSelect = await inquirer.prompt([
             {
@@ -312,15 +307,3 @@ const addRole = async () => {
         firstPrompt();
     }
 };
-
-const employeeByManager = async () => {
-    console.log('Employees by Manager:');
-
-    try {
-        let query = 'SELECT * FROM employee';
-        connection.query(query, function (err, res) {
-            if (err) throw err;
-            
-        })
-    }
-}
